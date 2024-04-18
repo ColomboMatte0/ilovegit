@@ -1,0 +1,21 @@
+name: Check README for Name
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_readme:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Check README for name
+      run: |
+        if ! grep -q "Matteo Colombo" README.md; then
+          echo "Error: README.md does not contain 'Matteo Colombo'."
+          exit 1
+        fi
